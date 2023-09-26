@@ -10,7 +10,14 @@ services:
       - 8080:8080
     expose:
       - 8080
-
+  
+  client:
+    build:
+      context: ./client-app
+      dockerfile: Dockerfile
+    env_file:
+      - ./client-app/.env
+ 
   nginx:
     image: nginx:1.25.2
     ports:
