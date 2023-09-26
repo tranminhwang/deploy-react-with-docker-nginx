@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend-app
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend-app/.env
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+
+  nginx:
+    image: nginx:1.25.2
+    ports:
+      - 80:80
+    volumes:
+      - ./client-app/dist:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
